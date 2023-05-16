@@ -1,9 +1,11 @@
 import {useState} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
+import 'semantic-ui-css/semantic.min.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 function App() {
   const [text,setText]=useState('');
   const [list,setList]=useState([]);
@@ -40,51 +42,73 @@ function App() {
   };
 
 
-
   
   
   
   return (
     <div className="App">
-    <div className='input-div'>
-    <h1>Enter the events to-do({list.length})</h1>
-  
-    <input value={text} type='text' onChange={InputBar} placeholder='write to add to-do'  className='input-bar' ></input>
-    <div classname="add-button">
-    <button  onClick={appendValue}>Add!</button>
-    </div>
+
+    <h1>To-Do List</h1>
+
+
+    <InputGroup className="mb-3">
+        <Form.Control
+          placeholder="Write a event to add into list"
+          aria-label="To do input"
+          aria-describedby="basic-addon2"
+          value={text} type='text' onChange={InputBar}
+        />
+        <Button variant="outline-primary" id="button-addon2"  onClick={appendValue} >
+          Done!
+        </Button>
+      </InputGroup>
    
-    </div>
     <div className='Display-div'>
-    <ol className='display-list'>
-    {list.map((listItem,index)=>(
-      <li key={index} className='text-box'>
-      <h2 className='to-do-text'>{listItem}</h2>
-      {(<button onClick={()=> {
-        Delete(index);
-        done_list(index);
-      }}>Done!!</button>)}
-      
-      </li>
-    ))
+    
+    {
+      list.map((listItem,index)=>(
+        <Card>
+        <Card.Header>Event ({index+1})</Card.Header>
+        <Card.Body>
+        <Card.Title>
+        {listItem}
+        </Card.Title>
+        <Button onClick={()=> {
+          Delete(index);
+          done_list(index);
+        }} variant='primary'>Done!!</Button>
 
+        </Card.Body>
+        </Card>
+        
+
+      ))
     }
-    </ol>
+    
+   
+  
 
-    <h1 className='done-with h1'>Events which you are done with"({tick.length})"</h1>
+    <h1 className='done-with-h1'>Events which you are done with"({tick.length})"</h1>
       <ul className='done-with'>
       {tick.map((tickItem,idx)=>(
-        <li key={idx} >{tickItem}</li>
+        <Card>
+        <Card.Header>{idx+1}</Card.Header>
+        <Card.Title>{tickItem}</Card.Title>
+        </Card>
       ))}
+      
       </ul>    
     </div>
 
-    <div className='reset-div'>
-    <button onClick={reset}>Reset!!</button>
+
+
+    
+
+    <Button variant="outline-primary" id="button-addon2"  onClick={reset} > Reset!</Button>
+
     
     </div>
 
-    </div>
   );
 }
 
