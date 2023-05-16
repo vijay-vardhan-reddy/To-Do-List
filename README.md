@@ -42,6 +42,8 @@ npm start
 - To reset the lists and start over, click the "Reset" button.
 
 ## Screenshots
+![image](https://github.com/vijay-vardhan-reddy/To-Do-List/assets/112805442/b08db520-8bef-444b-8cea-26b37ed3fe24)
+
 
 ## Contributing
 
